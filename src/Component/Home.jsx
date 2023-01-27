@@ -1,7 +1,8 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-
+import {Button} from '@chakra-ui/react';
+import { Link} from "react-router-dom";
 const img1 =
   "https://www.reliancedigital.in/medias/Apple-MGN63HNA-Laptops-491946461-i-1-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wxNzczNDJ8aW1hZ2UvanBlZ3xpbWFnZXMvaDVhL2gyZC85NDQzMDgzNTgzNTE4LmpwZ3xhYzRiNWIxZGQ2NjNiNWIyYjI0Y2ZkYTZlZWQ3MTFjZTMxYzVmNDBiNmM5Mzk5OTM2OGVkZmExMjMyYjIxNDQ4";
 const img2 =
@@ -25,11 +26,14 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
+  
+
   const addToCartHandler = (options) => {
     dispatch({ type: "addToCart", payload: options });
     dispatch({ type: "calculatePrice" });
     toast.success("Added To Cart");
   };
+ 
   return (
     <div className="home">
       {productList.map((i) => (
@@ -42,12 +46,27 @@ const Home = () => {
           handler={addToCartHandler}
         />
       ))}
+       <div>
+    <Button colorScheme={'purple'} type={'submit'} position={'absolute'} left={'410'}>
+             <Link to={"/detailsmac"}> About Mac Book </Link>
+             
+           </Button>
+ </div>
+ <div>
+    <Button colorScheme={'purple'} type={'submit'} position={'absolute'} left={'680'} h={'10'} >
+             <Link to={"/detailssh"}> About Shoes </Link>
+             
+           </Button>
+ </div>
     </div>
+   
   );
 };
 
-const ProductCard = ({ name, id, price, handler, imgSrc }) => (
-  <div className="productCard">
+const ProductCard = ({ name, id, price, handler,imgSrc}) => {
+
+  return(
+    <div className="productCard">
     <img src={imgSrc} alt={name} />
     <p>{name}</p>
     <h4>${price}</h4>
@@ -55,6 +74,10 @@ const ProductCard = ({ name, id, price, handler, imgSrc }) => (
       Add to Cart
     </button>
   </div>
-);
+
+  )
+  
+ 
+  };
 
 export default Home;

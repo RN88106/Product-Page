@@ -7,6 +7,7 @@ export const cartReducer = createReducer(
     shipping: 0,
     tax: 0,
     total: 0,
+   
   },
   {
     addToCart: (state, action) => {
@@ -34,6 +35,8 @@ export const cartReducer = createReducer(
     deleteFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter((i) => i.id !== action.payload);
     },
+
+
     calculatePrice: (state) => {
       let sum = 0;
       state.cartItems.forEach((i) => (sum += i.price * i.quantity));
