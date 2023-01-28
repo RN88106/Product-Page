@@ -1,33 +1,12 @@
 import React from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import {Button} from '@chakra-ui/react';
+import { useDispatch, useSelector } from "react-redux";
+import {Button, Stack} from '@chakra-ui/react';
 import { Link} from "react-router-dom";
-const img1 =
-  "https://www.reliancedigital.in/medias/Apple-MGN63HNA-Laptops-491946461-i-1-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wxNzczNDJ8aW1hZ2UvanBlZ3xpbWFnZXMvaDVhL2gyZC85NDQzMDgzNTgzNTE4LmpwZ3xhYzRiNWIxZGQ2NjNiNWIyYjI0Y2ZkYTZlZWQ3MTFjZTMxYzVmNDBiNmM5Mzk5OTM2OGVkZmExMjMyYjIxNDQ4";
-const img2 =
-  "https://cdn.shopify.com/s/files/1/2428/5565/products/Neemans-HaleBlack-ReLive-Knits-Jogger-FrontRightLogo-Comfortable-Shoes_1024x.jpg?v=1662876260";
 
 const Home = () => {
-  const productList = [
-    {
-      name: "Mac Book",
-      price: 12000,
-      imgSrc: img1,
-      id: "asdhajsdbhjabhsjdfdfv",
-    },
-    {
-      name: "Black Shoes",
-      price: 490,
-      imgSrc: img2,
-      id: "sdjfdlaajsdbhjabhsjdfdfv",
-    },
-  ];
-
   const dispatch = useDispatch();
-
-  
-
+  const {cart:{items:productList}} = useSelector((state) => state);
   const addToCartHandler = (options) => {
     dispatch({ type: "addToCart", payload: options });
     dispatch({ type: "calculatePrice" });
@@ -37,6 +16,13 @@ const Home = () => {
   return (
     <div className="home">
       {productList.map((i) => (
+        <div>
+          <Stack spacing={4} direction='row' align='center'>
+            <Button colorScheme={'purple'} type={'submit'} display={"flex"} 
+        flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
+        <Link to={`/product/${i.id}`}>About {i.name} </Link>
+      </Button>
+  </Stack>
         <ProductCard
           key={i.id}
           imgSrc={i.imgSrc}
@@ -45,18 +31,14 @@ const Home = () => {
           id={i.id}
           handler={addToCartHandler}
         />
+      </div>
+
       ))}
        <div>
-    <Button colorScheme={'purple'} type={'submit'} position={'absolute'} left={'410'}>
-             <Link to={"/detailsmac"}> About Mac Book </Link>
-             
-           </Button>
+
  </div>
  <div>
-    <Button colorScheme={'purple'} type={'submit'} position={'absolute'} left={'680'} h={'10'} >
-             <Link to={"/detailssh"}> About Shoes </Link>
-             
-           </Button>
+
  </div>
     </div>
    

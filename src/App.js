@@ -3,8 +3,8 @@ import Login from "./Component/Login";
 import Home from "./Component/Home";
 import Header from "./Component/Header"
 import Cart from "./Component/Cart";
-import DetailsMac from "./Component/DetailsMac";
-import DetailsSh from "./Component/DetailsSh";
+import Details from "./Component/Details";
+
 import "./Style/App.scss";
 
 
@@ -17,8 +17,7 @@ function App() {
      <Route path="/" element={<Login />} />
      <Route path="/home" element={<Home />} />
      <Route path="/cart" element={<Cart />} />
-     <Route path="/detailsmac" element={<DetailsMac />} />
-     <Route path="/detailssh" element={<DetailsSh />} />
+     <Route path="/product/:id" element={<Details />} />
 </Routes>
      </Router>
      
